@@ -1,8 +1,10 @@
 # Raspberry PI : mesure d'une tension continue
+pour me contacter : jmb52.dev@gmail.com
+dépot github : https://github.com/josmet52/rpidcmes
 
 ## Préambule
 
-Le Raspberry PI est un ordinateur mon-carte de petite taille qui tourne
+Le Raspberry PI est un ordinateur mono-carte de petite taille qui tourne
 sous Raspberry-OS (distribution de Debian). Le PI offre un bus complet
 d'entrées sorties numérique mais aucune entrée analogique.
 
@@ -21,15 +23,19 @@ bientôt vide et qu'il faudrait arrêter proprement le système d'exploitation.
 
 Dans ce but j'ai développé et testé plusieures variantes toutes basées
 sur le même principe soit: mesure le temps que met un condensateur pour
-se charger au travers d'une résistance à une tension connue et convertir ce temps en valeur de
-tension. Ces différents essais m'ont amené sur la solution que je vous
-propose aujourd'hui.
+se charger au travers d'une résistance à une tension connue et convertir ce temps en valeur de tension. Ces différents essais m'ont amené sur la solution que je vous propose aujourd'hui.
 
 ## Principe de base
 
-*insérer le schéma*
+![](rpidcmes_schema.jpg)
 
-La tension à mesurer est appliquée entre les bornes BBU-BAT et BBU-GND. La commande
+![](rpidcmes_breakout.jpg)
+
+![](rpidcmes_ensemble.jpg)
+
+
+
+La tension à mesurer est appliquée entre les bornes BAT_VCC et BAT-GND. La commande
 RPI-CMD est relié sur la borne GPIO (8 dans mon cas) du PI configurée comme
 une sortie et la sortie RPI-MES est reliée sur la borne GPIO (10 dans
 mon cas) du PI configurée comme une entrée. Les Connexions RPI-VCC (borne 4) et
@@ -44,14 +50,7 @@ CMD à "0" ainsi le MOSFET T1 se bloque et le condensateur peut se charger au tr
 résistance R1 alimentée par la tension à mesurer. Lorsque la tension aux
 bornes du condensateur atteint la tension VTRIG (2.5V dans mon cas), le comparateur IC1 fait passer sa
 sortie de "1" à "0". Le PI mesure le temps écoulé entre le lancement
-de la mesure et le moment ou un flanc descendant est détecté RPI-MES. Connaissant les caractéristiques du 
-circuit R1, C1 il est possible de calculer la valeur de la tension appliquée à l'entrée
-BBU-BAT par la formule:
-
-*insérer la formule*
-
-Où UTRIG = tension de référence (2.5V) et TMES = temps écoulé entre le
-lancement de la mesure et le moment ou la sortie où un flanc descendant est détecté sur l'entrée RPI-MES.
+de la mesure et le moment ou un flanc descendant est détecté RPI-MES. Connaissant les caractéristiques du circuit R1, C1 il le programme calcule la valeur de la tension appliquée à l'entrée BAT_VCC.
 
 ## Limites du principe utilisé
 
@@ -66,7 +65,7 @@ batterie de l'alimentation sans coupure.
 
 #### Plage de tension admissible
 
-Le principe utilisé n'autorise pas de tension mesurée en dessous de 2.8V
+Le principe utilisé n'autorise pas de tension mesurée en dessous de 2.7V
 pour assurer que la tension aux bornes du condensateur puisse atteindre
 2.5V et faire basculer la sortie du comparateur. La tension maximale qui
 peut être appliquée est limitée par le comparateur LM393 et peut
@@ -74,7 +73,7 @@ atteindre 36V. Cependant comme il n'y a aucune protection entre l'entrée
 de mesure et le PI, un défaut du LM393 pourrait amener la tension
 d'entrée directement sur la borne RPI-MES ou, si le MOSFET devenait
 défectueux, sur la borne RPI-CMD. Je recommande donc de ne pas dépasser
-la tension max admissible par le port GPIO du PI soit 5V.
+la tension max admissible par le port GPIO du PI soit 5V mais personnellement je l'utilise pour des tensions jusqu'à 15V.
 
 ## Fiabilité de la mesure
 
@@ -88,7 +87,7 @@ puis je fais la moyenne des mesures restantes.
 ## Software
 
 Le software est écrit en Python est peut être téléchargé depuis GitHub
-par le lien: <https://github.com/josmet52/pidcmes>
+par le lien: <https://github.com/josmet52/rpidcmes>
 
 ## Nomenclature
 
@@ -101,7 +100,8 @@ Les composants utilisés sont:
 -   R2 = 2.5kΩ -- Résistance
 -   C1 = 1μF -- Condensateur céramique
 
-## Outils
+## pidcmes_lib.py
+la classe Pidcmes comprend un exemple d'application qui peut être exécuté directement en exécutant la classe. La partie main de ce programme peut servir d'exemple pour une mise en oeuvre dans un autre projet.
 
-###pidcmes_lib.py
+
 
