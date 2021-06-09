@@ -98,7 +98,7 @@ Les composants utilisés sont:
 
 ## pidcmes_lib.py
 
-la classe Pidcmes comprend un exemple d'application qui peut être exécuté directement en exécutant la classe. La partie main de ce programme peut servir d'exemple pour une mise en oeuvre dans un autre projet.
+la classe Pidcmes comprend un exemple d'application qui peut être exécuté directement en exécutant la classe. La partie main de ce programme peut servir d'exemple pour une mise en oeuvre dans un autre projet. 
 
 ## Photos
 
