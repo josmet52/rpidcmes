@@ -29,11 +29,6 @@ se charger au travers d'une résistance à une tension connue et convertir ce te
 
 ![](rpidcmes_schema.jpg)
 
-![](rpidcmes_breakout.jpg)
-
-![](rpidcmes_ensemble.jpg)
-
-
 
 La tension à mesurer est appliquée entre les bornes BAT_VCC et BAT-GND. La commande
 RPI-CMD est relié sur la borne GPIO (8 dans mon cas) du PI configurée comme
@@ -99,6 +94,14 @@ Les composants utilisés sont:
 -   R1 = 100kΩ -- Résistance
 -   R2 = 2.5kΩ -- Résistance
 -   C1 = 1μF -- Condensateur céramique
+
+## Photos
+
+![](rpidcmes_breakout.jpg)
+Prototype
+
+![](rpidcmes_ensemble.jpg)
+Montage cablé sur le PI
 
 ## pidcmes_lib.py
 la classe Pidcmes comprend un exemple d'application qui peut être exécuté directement en exécutant la classe. La partie main de ce programme peut servir d'exemple pour une mise en oeuvre dans un autre projet.
