@@ -96,6 +96,10 @@ Les composants utilisés sont:
 -   R2 = 2.7kΩ -- Résistance
 -   C1 = 1μF -- Condensateur céramique
 
+## pidcmes_lib.py
+
+la classe Pidcmes comprend un exemple d'application qui peut être exécuté directement en exécutant la classe. La partie main de ce programme peut servir d'exemple pour une mise en oeuvre dans un autre projet.
+
 ## Photos
 
 ![](rpidcmes_breakout.jpg)
@@ -103,9 +107,6 @@ Prototype
 
 ![](rpidcmes_ensemble.jpg)
 Montage cablé sur le PI
-
-## pidcmes_lib.py
-la classe Pidcmes comprend un exemple d'application qui peut être exécuté directement en exécutant la classe. La partie main de ce programme peut servir d'exemple pour une mise en oeuvre dans un autre projet.
 
 
 
